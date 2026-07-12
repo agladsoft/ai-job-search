@@ -41,7 +41,7 @@ State how many jobs will be ranked before proceeding.
 
 Dispatch parallel `general-purpose` agents via the **Agent tool**, ~5 jobs per agent (a single agent is fine for ≤5 jobs). Token-efficiency rules, consistent with `/apply`:
 
-- Pass each agent everything it needs **inline in the prompt** - the job list (title, company, URL) and a compact scoring rubric extracted from the files you read in Step 1: the strong/moderate/weak skill match areas, direct/adjacent experience domains, behavioral thrive/drain factors, career goals, deal-breakers, and the location constraints. Do **not** make agents re-read the profile files.
+- Pass each agent everything it needs **inline in the prompt** - the job list (title, company, URL) and a compact scoring rubric extracted from the files you read in Step 1: the strong/moderate/weak skill match areas, direct/adjacent experience domains, behavioral thrive/drain factors, career goals (including the active job-search caveats: EM-tier roles score as partially-aligned-or-better on a genuine skills match, and UAE/MENA/fully-remote roles get a Career Alignment boost), deal-breakers, and the location constraints. Do **not** make agents re-read the profile files.
 - Agents fetch each posting URL with WebFetch and score **only from actually fetched content**. If a URL is dead, redirects to a listing page, or the posting has expired, the agent marks that job `expired` - it never scores from the title alone and never fabricates posting content.
 - Scope is triage: posting text vs. rubric. **No company research, no salary lookup, no web searches** - that depth belongs to `/apply`.
 
@@ -114,7 +114,7 @@ Create the file as `{}` if it does not exist. It is a JSON object keyed by job U
 ```
 
 - `location`: the posting's location plus its veto status - one of `PASS` / `FLAG: <why>` / `FAIL: <why>` (e.g. "Remote (EU) - PASS", "Berlin - FAIL: relocation required"). This is what lets the user judge location at pick time.
-- `notes`: a 1-2 sentence honest digest for manual triage - the top strength and the top gap from your Step 2 findings, plus a `🔥` and the date if the deadline is within 7 days. No fabrication; if you have nothing grounded to say, use the verdict band.
+- `notes`: a 1-2 sentence honest digest for manual triage - the top strength and the top gap from your Step 2 findings, plus a `🔥` and the date if the deadline is within 7 days. If the EM-tier or UAE/MENA/remote active-job-search boost changed the Career Alignment score, say so in one clause (e.g. "EM role scored as lateral move, active job-search priority"). No fabrication; if you have nothing grounded to say, use the verdict band.
 
 Merge rules (follow exactly - the CV pipeline stamps its own fields onto these entries):
 

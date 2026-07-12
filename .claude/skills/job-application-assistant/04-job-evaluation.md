@@ -62,6 +62,8 @@ Does this role advance career goals and contain tasks that energize?
 | 40-59 | Decent job but doesn't build toward career goals |
 | 0-39 | Dead end or backwards step |
 
+**Active job-search mode (temporary strategy):** Currently prioritizing speed-of-hire over strict career-ladder progression. Engineering Manager / Senior Engineering Manager / Head of Engineering-tier roles that are a genuine skills and domain match score in the 60-79 "partially aligned" band or higher on this dimension - they are a lateral step while job-hunting, not a "backwards step," even though they sit one level below CTO. Only score below 60 here if the role is also a poor skills/domain match on its own terms.
+
 **Career goals:**
 - [YOUR_CAREER_GOAL_1]
 - [YOUR_CAREER_GOAL_2]
@@ -76,6 +78,7 @@ Does this role advance career goals and contain tasks that energize?
 - **Security**: [YOUR_FINANCIAL_SITUATION_CONTEXT]
 - **Flexibility**: [YOUR_SCHEDULE_CONSTRAINTS]
 - **Professional development**: [YOUR_GROWTH_PRIORITIES]
+- **Active job-search mode (temporary strategy)**: UAE-based, MENA-based, or fully-remote roles get a boost on this dimension - treat them as at least "partially aligned" (60-79) on location/logistics fit alone, even if career-ladder alignment on its own would score lower, because faster time-to-hire is the current priority. Stacks with the EM-tier caveat above - a genuinely-matched EM role that is also UAE/MENA/remote should land in the upper half of 60-79 or into 80-100.
 
 ### 6. Salary Benchmark (Optional)
 
