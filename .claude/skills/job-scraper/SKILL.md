@@ -80,7 +80,7 @@ Use the site-specific query strings from `search-queries.md` directly as WebSear
 For each promising result from Step 1:
 - Use `WebFetch` to retrieve the job posting page
 - Extract: **job title**, **company**, **location**, **posting date** (or "recent"), **URL**, **key requirements** (brief), **application deadline** (if listed)
-- Skip if the URL or company+title combo already exists in `seen_jobs.json`
+- Skip if the job already exists in `seen_jobs.json` - match by **canonical URL** (`python3 tools/url_normalize.py <url>`), not raw string, so the same posting scraped from two LinkedIn regional subdomains (`ae.linkedin.com` vs `linkedin.com`) or with different tracking params collapses to one entry. Company+title is a secondary fallback.
 - Skip if the company+role already appears in `job_search_tracker.csv`
 
 ### Step 3: Quick Fit Assessment

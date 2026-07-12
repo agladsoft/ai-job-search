@@ -22,7 +22,7 @@ Follow these steps **in order**.
 ## Step 1: Load State
 
 1. Read `job_scraper/seen_jobs.json`. If the file is missing or has no entries, tell the user to run `/scrape` first and stop.
-2. Build the **applied exclusion set** - jobs already applied to or already turned into a CV are out of scope regardless of flags. Match by **normalized URL** (trim, lowercase, strip a trailing slash) as the primary key, with company+role as a fuzzy fallback. Sources:
+2. Build the **applied exclusion set** - jobs already applied to or already turned into a CV are out of scope regardless of flags. Match by **canonical URL** as the primary key, with company+role as a fuzzy fallback. Canonicalize EVERY URL on both sides (candidate URLs and the source URLs below) with `python3 tools/url_normalize.py <url> [...]` (it prints one canonical form per line) - do not hand-normalize. This collapses LinkedIn country subdomains, slugs, and tracking params to the same key (e.g. `ae.linkedin.com/jobs/view/...-4438593740` == `linkedin.com/jobs/view/...-4438593740`) while preserving non-LinkedIn query identities (e.g. Greenhouse `?gh_jid=`). Sources:
    - `job_search_tracker.csv`: the `source` column (job URL) and company+role of every row.
    - The CV pipeline's role folders, if reachable: `/Users/ant747/Documents/cv-speed-up/claude-cv-agents/roles/*/source/jd_link` each hold the URL of a role a CV was already built for. Include those URLs. (Skip this source silently if the path is not present.)
    - Any entry in `job_scraper/shortlist.json` (if it exists) marked `"status": "applied"` (already handled) or `"status": "excluded"` (a job the user has dismissed and never wants to see again). Both are terminal.
@@ -116,7 +116,7 @@ Create the file as `{}` if it does not exist. It is a JSON object keyed by job U
 - `location`: the posting's location plus its veto status - one of `PASS` / `FLAG: <why>` / `FAIL: <why>` (e.g. "Remote (EU) - PASS", "Berlin - FAIL: relocation required"). This is what lets the user judge location at pick time.
 - `notes`: a 1-2 sentence honest digest for manual triage - the top strength and the top gap from your Step 2 findings, plus a `🔥` and the date if the deadline is within 7 days. If the EM-tier or UAE/MENA/remote active-job-search boost changed the Career Alignment score, say so in one clause (e.g. "EM role scored as lateral move, active job-search priority"). No fabrication; if you have nothing grounded to say, use the verdict band.
 
-Merge rules (follow exactly - the CV pipeline stamps its own fields onto these entries):
+Merge rules (follow exactly - the CV pipeline stamps its own fields onto these entries). **Match "existing" by canonical URL**, not raw string: an incoming job is "already in `shortlist.json`" when its `normalize_url` (via `tools/url_normalize.py`) equals the `normalize_url` of any existing key. When it matches, update that existing entry in place (keep its original `url` key so the posting still opens) - never add a second entry for a LinkedIn subdomain/slug variant of a job already listed.
 
 - **Terminal entry already in `shortlist.json` (`status` is `applied` or `excluded`):** leave `status` and `picked` as-is; you may refresh the rank-derived fields but never reopen it. These never re-enter the pick menu.
 - **Applied job (URL in the Step 1 applied exclusion set) not yet in `shortlist.json`** → do **not** add it. If it *is* already present, the rule above already keeps it terminal; if it is present but still `proposed`, set its `status` to `applied` (mirror the truth).
