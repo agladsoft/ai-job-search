@@ -84,6 +84,44 @@ Do not modify `job_search_tracker.csv` - that file records applications, and `/r
 
 ---
 
+## Step 4b: Export the Full Ranked Queue
+
+This is the handoff to the CV pipeline (the `claude-cv-agents` repo), which consumes a picked queue. Export the **whole ranked menu** so the user can pick any role manually, not just the auto-shortlisted ones.
+
+Merge every job you gave a triage score this run into `job_scraper/shortlist.json` - **both shortlisted AND below-threshold** jobs. The only jobs you leave out are `expired`/dead-URL ones (they can't be applied to). Location-vetoed jobs (`FAIL`) that were still scored ARE included, with the veto recorded in the `location` field and `status` still `proposed`, so the user decides per role whether the location is a real dealbreaker.
+
+Create the file as `{}` if it does not exist. It is a JSON object keyed by job URL; each entry has this schema:
+
+```json
+{
+  "<url>": {
+    "url": "https://...",
+    "title": "Chief Technology Officer",
+    "company": "Acme Inc",
+    "rank_score": 78,
+    "rank_verdict": "Strong Fit",
+    "rank_date": "YYYY-MM-DD",
+    "location": "Copenhagen (on-site) - FLAG: heavy travel",
+    "notes": "Strong platform-scaling match; gap: no direct fintech regulatory experience. Deadline 2026-07-20 🔥",
+    "picked": false,
+    "status": "proposed"
+  }
+}
+```
+
+- `location`: the posting's location plus its veto status - one of `PASS` / `FLAG: <why>` / `FAIL: <why>` (e.g. "Remote (EU) - PASS", "Berlin - FAIL: relocation required"). This is what lets the user judge location at pick time.
+- `notes`: a 1-2 sentence honest digest for manual triage - the top strength and the top gap from your Step 2 findings, plus a `🔥` and the date if the deadline is within 7 days. No fabrication; if you have nothing grounded to say, use the verdict band.
+
+Merge rules (follow exactly - the CV pipeline stamps its own fields onto these entries):
+
+- **New url** → add the full entry with `"picked": false` and `"status": "proposed"`.
+- **Existing url** → refresh the rank-derived fields (`rank_score`, `rank_verdict`, `rank_date`, `location`, `notes`). NEVER touch `picked`, `status`, or any field the pipeline added (`role_dir`, `pdf`, `exit`, `in_range`, `completed`, `fail_phase`, `fail_reason`). A re-rank must not undo a user's pick or a completed run.
+- Do not add `expired`/dead-URL jobs.
+
+The `status` lifecycle is owned downstream: `proposed` (fresh) → `done` | `failed` (stamped by `/cv-wf-batch` in the CV repo). `/rank` only ever writes `proposed` on brand-new entries.
+
+---
+
 ## Step 5: Present the Shortlist
 
 ```
@@ -113,6 +151,7 @@ Rules for the presentation:
 
 - Every claim traces to fetched posting text or the profile - no invented details.
 - Say explicitly that these are **triage scores from the posting text only**, and that `/apply` will re-evaluate with company research before anything is drafted.
+- Add the CV-pipeline footer: "Full ranked menu (shortlisted + below-threshold, with location and notes) exported to `job_scraper/shortlist.json`. To run the full CV workflow on any of these, set `\"picked\": true` on their entries and run `/cv-wf-batch` in the claude-cv-agents repo."
 - Then ask: "Want to apply to any of these? Give me the number(s) and I'll start with the full `/apply` workflow."
 - If the user picks one, run the `/apply` workflow on that job's URL, passing the triage verdict as prior context but **re-running the full Step 1 evaluation** - triage never substitutes for it.
 
