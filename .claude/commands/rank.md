@@ -22,7 +22,11 @@ Follow these steps **in order**.
 ## Step 1: Load State
 
 1. Read `job_scraper/seen_jobs.json`. If the file is missing or has no entries, tell the user to run `/scrape` first and stop.
-2. Read `job_search_tracker.csv`. Build the exclusion set: any company+role already in the tracker is out of scope regardless of flags - it has been applied to or consciously tracked.
+2. Build the **applied exclusion set** - jobs already applied to or already turned into a CV are out of scope regardless of flags. Match by **normalized URL** (trim, lowercase, strip a trailing slash) as the primary key, with company+role as a fuzzy fallback. Sources:
+   - `job_search_tracker.csv`: the `source` column (job URL) and company+role of every row.
+   - The CV pipeline's role folders, if reachable: `/Users/ant747/Documents/cv-speed-up/claude-cv-agents/roles/*/source/jd_link` each hold the URL of a role a CV was already built for. Include those URLs. (Skip this source silently if the path is not present.)
+   - Any entry already marked `"status": "applied"` in `job_scraper/shortlist.json` (if it exists).
+   URL matching matters: the tracker's `source` matches postings exactly, whereas company+role drifts (e.g. "Nameless Ventures" vs "Nameless Ventures (client: ...)").
 3. Select candidates: entries with status `new` (or all non-applied entries with `--all`), minus the exclusion set, filtered by the focus area if one was given.
 4. If no candidates remain, say so ("Nothing new to rank - run /scrape to find fresh postings") and stop.
 5. Read the scoring framework and profile **once**:
@@ -114,11 +118,14 @@ Create the file as `{}` if it does not exist. It is a JSON object keyed by job U
 
 Merge rules (follow exactly - the CV pipeline stamps its own fields onto these entries):
 
-- **New url** → add the full entry with `"picked": false` and `"status": "proposed"`.
-- **Existing url** → refresh the rank-derived fields (`rank_score`, `rank_verdict`, `rank_date`, `location`, `notes`). NEVER touch `picked`, `status`, or any field the pipeline added (`role_dir`, `pdf`, `exit`, `in_range`, `completed`, `fail_phase`, `fail_reason`). A re-rank must not undo a user's pick or a completed run.
+- **Applied job (URL in the Step 1 applied exclusion set):**
+  - If it is **not** already in `shortlist.json` → do **not** add it. Applied jobs never enter the pick menu.
+  - If it **is** already in `shortlist.json` → set its `status` to `applied` (mirror the truth so it shows as done and is excluded from the batch), refresh the rank-derived fields, leave everything else as-is.
+- **New url** (not applied) → add the full entry with `"picked": false` and `"status": "proposed"`.
+- **Existing url** (not applied) → refresh the rank-derived fields (`rank_score`, `rank_verdict`, `rank_date`, `location`, `notes`). NEVER touch `picked`, `status`, or any field the pipeline added (`role_dir`, `pdf`, `exit`, `in_range`, `completed`, `fail_phase`, `fail_reason`). A re-rank must not undo a user's pick or a completed run.
 - Do not add `expired`/dead-URL jobs.
 
-The `status` lifecycle is owned downstream: `proposed` (fresh) → `done` | `failed` (stamped by `/cv-wf-batch` in the CV repo). `/rank` only ever writes `proposed` on brand-new entries.
+The `status` lifecycle: `proposed` (fresh) → `applied` | `failed`, stamped by `/cv-wf-batch` in the CV repo (`done == applied`: a produced CV counts as applied and is also logged to `job_search_tracker.csv`). `/rank` writes `proposed` on brand-new non-applied entries and mirrors `applied` onto entries whose URL is now in the applied set. `applied` is terminal - a re-rank never reopens it.
 
 ---
 
