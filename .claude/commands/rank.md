@@ -124,7 +124,7 @@ Merge rules (follow exactly - the CV pipeline stamps its own fields onto these e
 - **Existing url** (still `proposed`/`failed`) → refresh the rank-derived fields (`rank_score`, `rank_verdict`, `rank_date`, `location`, `notes`). NEVER touch `picked`, `status`, or any field the pipeline added (`role_dir`, `pdf`, `exit`, `in_range`, `completed`, `fail_phase`, `fail_reason`). A re-rank must not undo a user's pick or a completed run.
 - Do not add `expired`/dead-URL jobs.
 
-**File ordering:** when writing `shortlist.json`, keep non-`excluded` entries first (highest `rank_score` first, as now) and append all `excluded` entries at the **tail**, so the pick menu stays clean and dismissed jobs sink out of the way.
+**File ordering:** when writing `shortlist.json`, keep the actionable entries (`proposed`/`failed`) first, highest `rank_score` first, then append all terminal entries (`applied` and `excluded`) at the **tail** (also score-desc within that group). This keeps the pick menu at the top and sinks done/dismissed jobs out of the way.
 
 The `status` lifecycle:
 - `proposed` (fresh) → `applied` | `failed`, stamped by `/cv-wf-batch` (`done == applied`: a produced CV counts as applied and is also logged to `job_search_tracker.csv`).
