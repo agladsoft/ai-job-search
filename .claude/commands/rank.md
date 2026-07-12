@@ -92,7 +92,7 @@ Do not modify `job_search_tracker.csv` - that file records applications, and `/r
 
 This is the handoff to the CV pipeline (the `claude-cv-agents` repo), which consumes a picked queue. Export the **whole ranked menu** so the user can pick any role manually, not just the auto-shortlisted ones.
 
-Merge every job you gave a triage score this run into `job_scraper/shortlist.json` - **both shortlisted AND below-threshold** jobs. The only jobs you leave out are `expired`/dead-URL ones (they can't be applied to). Location-vetoed jobs (`FAIL`) that were still scored ARE included, with the veto recorded in the `location` field and `status` still `proposed`, so the user decides per role whether the location is a real dealbreaker.
+Merge every job you gave a triage score this run into `job_scraper/shortlist.json` - **both shortlisted AND below-threshold** jobs. The only jobs you leave out are `expired`/dead-URL ones (they can't be applied to). Location-vetoed jobs (`FAIL`) ARE included but written with `status: "excluded"` (a hard veto - relocation / work-authorization / language dealbreaker - is not something to keep in the pick menu), with the reason in `location` (format `FAIL: <reason>`) and `notes`. Location `FLAG` jobs (soft, e.g. heavy travel) stay `proposed` so the user judges per role - only `FAIL` auto-excludes.
 
 Create the file as `{}` if it does not exist. It is a JSON object keyed by job URL; each entry has this schema:
 
@@ -120,7 +120,8 @@ Merge rules (follow exactly - the CV pipeline stamps its own fields onto these e
 
 - **Terminal entry already in `shortlist.json` (`status` is `applied` or `excluded`):** leave `status` and `picked` as-is; you may refresh the rank-derived fields but never reopen it. These never re-enter the pick menu.
 - **Applied job (URL in the Step 1 applied exclusion set) not yet in `shortlist.json`** → do **not** add it. If it *is* already present, the rule above already keeps it terminal; if it is present but still `proposed`, set its `status` to `applied` (mirror the truth).
-- **New url** (not applied/excluded) → add the full entry with `"picked": false` and `"status": "proposed"`.
+- **New url that is a location `FAIL`** → add it with `"picked": false` and `"status": "excluded"` (auto-veto; reason in `location`/`notes`).
+- **New url** (not applied/excluded, not FAIL) → add the full entry with `"picked": false` and `"status": "proposed"`.
 - **Existing url** (still `proposed`/`failed`) → refresh the rank-derived fields (`rank_score`, `rank_verdict`, `rank_date`, `location`, `notes`). NEVER touch `picked`, `status`, or any field the pipeline added (`role_dir`, `pdf`, `exit`, `in_range`, `completed`, `fail_phase`, `fail_reason`). A re-rank must not undo a user's pick or a completed run.
 - Do not add `expired`/dead-URL jobs.
 
@@ -128,7 +129,7 @@ Merge rules (follow exactly - the CV pipeline stamps its own fields onto these e
 
 The `status` lifecycle:
 - `proposed` (fresh) → `applied` | `failed`, stamped by `/cv-wf-batch` (`done == applied`: a produced CV counts as applied and is also logged to `job_search_tracker.csv`).
-- `proposed` → `excluded`, set **by the user** in `shortlist.json` to dismiss a job they will never apply to.
+- `proposed` → `excluded`, set **by the user** to dismiss a job they will never apply to, **or automatically by `/rank`** when a job has a location `FAIL` veto.
 - `/rank` writes `proposed` on brand-new non-applied entries, mirrors `applied` onto entries whose URL is in the applied set, and never touches `applied`/`excluded` entries. Both are terminal - a re-rank never reopens them, and `excluded` URLs are dropped before scoring (Step 1) so they do not appear in the ranked shortlist either.
 
 ---
