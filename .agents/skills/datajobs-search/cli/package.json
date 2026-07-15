@@ -1,0 +1,20 @@
+{
+  "name": "datajobs-cli",
+  "version": "1.0.0",
+  "description": "CLI for searching datajobs.com (data/analytics jobs) via its category pages — no authentication, zero runtime dependencies. Base URL is swappable via DATAJOBS_BASE_URL.",
+  "type": "module",
+  "main": "src/cli.ts",
+  "bin": {
+    "datajobs-search": "src/cli.ts"
+  },
+  "scripts": {
+    "start": "bun run src/cli.ts",
+    "test": "bun test --timeout 30000",
+    "typecheck": "tsc --noEmit"
+  },
+  "dependencies": {},
+  "devDependencies": {
+    "typescript": "^5.4.0",
+    "@types/bun": "latest"
+  }
+}
