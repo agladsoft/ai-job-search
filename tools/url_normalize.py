@@ -12,6 +12,8 @@ Robust-LinkedIn scope. Kept in sync with cv-agents ``lib/url_normalize.py`` (sam
   source).
 - RemoteOK (``remoteok.com``): reduce ``/remote-jobs/<slug>-<id>`` to the trailing id.
 - ai-jobs.net: reduce ``/job/<slug>-<id>/`` to the trailing id.
+- CrunchBoard (``crunchboard.com``): reduce ``/jobs/<id>-<slug>`` to the leading id.
+- datajobs.com: reduce ``/<company>/<role>-job~<id>`` to the trailing id.
 - Other hosts: KEEP the query string - often the job identity (Greenhouse ``?gh_jid=``).
 
 CLI: ``python3 tools/url_normalize.py <url> [<url> ...]`` prints one canonical form per line
@@ -25,6 +27,8 @@ _DIGIT_RUN = re.compile(r"\d{5,}")
 _WELLFOUND_JOB = re.compile(r"/jobs/(\d+)")
 _REMOTEOK_JOB = re.compile(r"(\d{4,})$")
 _AIJOBS_JOB = re.compile(r"-(\d{3,})$")
+_CRUNCHBOARD_JOB = re.compile(r"/jobs/(\d+)")
+_DATAJOBS_JOB = re.compile(r"-job~(\d+)")
 
 
 def normalize_url(url):
@@ -82,6 +86,22 @@ def normalize_url(url):
         m = _AIJOBS_JOB.search(path)
         if m:
             return "ai-jobs.net/job/" + m.group(1)
+        return host + path
+
+    # CrunchBoard job URLs are /jobs/<id>-<slug>; the leading numeric id is the identity.
+    if host == "crunchboard.com" or host.endswith(".crunchboard.com"):
+        host = "crunchboard.com"
+        m = _CRUNCHBOARD_JOB.search(path)
+        if m:
+            return "crunchboard.com/jobs/" + m.group(1)
+        return host + path
+
+    # datajobs.com job URLs are /<company>/<role>-job~<id>; the trailing id is the identity.
+    if host == "datajobs.com" or host.endswith(".datajobs.com"):
+        host = "datajobs.com"
+        m = _DATAJOBS_JOB.search(path)
+        if m:
+            return "datajobs.com/job/" + m.group(1)
         return host + path
 
     canon = host + path

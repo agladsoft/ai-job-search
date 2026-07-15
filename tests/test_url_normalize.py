@@ -64,6 +64,28 @@ def test_aijobs_slug_and_trailing_slash_variants_match():
     )
 
 
+def test_crunchboard_slug_variants_match():
+    assert same_job(
+        "https://www.crunchboard.com/jobs/545478873-software-engineer-ai-ml-specialist-at-credential-engine",
+        "https://crunchboard.com/jobs/545478873-software-engineer",
+    )
+    assert not same_job(
+        "https://crunchboard.com/jobs/545478873-x",
+        "https://crunchboard.com/jobs/545478874-x",
+    )
+
+
+def test_datajobs_company_slug_variants_match():
+    assert same_job(
+        "https://datajobs.com/IAC-Applications/Chief-Data-Architect-Cloud-Job~9105",
+        "https://datajobs.com/Some-Other-Co/Data-Architect-Job~9105",
+    )
+    assert not same_job(
+        "https://datajobs.com/X/Y-Job~9105",
+        "https://datajobs.com/X/Y-Job~9106",
+    )
+
+
 def test_non_linkedin_query_preserved():
     assert same_job(
         "https://www.trolley.com/careers/?gh_jid=5286996008",
