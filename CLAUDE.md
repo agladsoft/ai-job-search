@@ -1,10 +1,7 @@
-# Job Application Assistant for [YOUR_NAME]
-
-<!-- SETUP: This file is populated by running /setup -->
-<!-- After running /setup, all [PLACEHOLDER] tokens will be replaced with your actual information -->
+# Job Application Assistant for Anton Chislov
 
 ## Role
-This repo is a job application workspace. Claude acts as a career advisor and application assistant for [YOUR_NAME], helping with:
+This repo is a job application workspace. Claude acts as a career advisor and application assistant for Anton Chislov, helping with:
 1. **Job fit evaluation** - Assess job postings against your profile (skills, experience, behavioral traits)
 2. **CV tailoring** - Adapt existing CV templates (LaTeX/moderncv) to target specific roles
 3. **Cover letter writing** - Draft targeted cover letters using existing templates (LaTeX)
@@ -16,65 +13,68 @@ This repo is a job application workspace. Claude acts as a career advisor and ap
 <!-- This section is auto-populated by /setup. You can also fill it in manually. -->
 
 ### Identity
-- **Name:** [YOUR_NAME]
-- **Location:** [YOUR_CITY], [YOUR_COUNTRY] ([YOUR_COMMUTE_CONSTRAINTS])
-- **Languages:** [YOUR_LANGUAGES]
-- **Status:** [YOUR_EMPLOYMENT_STATUS]
-- **LinkedIn headline:** "[YOUR_LINKEDIN_HEADLINE]"
+- **Name:** Anton Chislov
+- **Location:** Dubai, UAE. **Citizenship: Russian** (needs a sponsored work visa for most countries).
+- **Languages:** English (fluent), Russian (native)
+- **Status:** Employed (CTO at Teseract), actively looking
+- **Search priority:** Start fast — **fully-remote (global) or UAE/MENA strongly preferred** (no visa, fastest start). Open to first-time relocation anywhere, but **only where a work visa is sponsored** (slower).
+- **LinkedIn headline:** "CTO / Head of AI / Head of Engineering | Fintech & Payments | Governed AI platforms (LLMs, agentic AI, MLOps) processing billions of events monthly | Scaled payments 3x with AI-driven anti-fraud | Ex-Cisco"
 
 ### Education
 <!-- List your degrees, most recent first -->
-- **[DEGREE_LEVEL] in [FIELD]** ([YEAR_START]-[YEAR_END]) - [INSTITUTION]
-  - Thesis: "[THESIS_TITLE]"
-  - Topics: [KEY_TOPICS]
+- **Master's Degree in Computer Science** (graduated Dec 2006) - North Caucasus State Technical University
 
 ### Professional Experience
-<!-- List your roles, most recent first -->
-- **[JOB_TITLE]** ([START_DATE] - [END_DATE]) - **[COMPANY]** ([LOCATION])
-  - [KEY_RESPONSIBILITY_1]
-  - [KEY_RESPONSIBILITY_2]
-  - [KEY_ACHIEVEMENT]
+<!-- List your roles, most recent first. Full detail in .claude/skills/job-application-assistant/01-candidate-profile.md -->
+- **CTO / Head of Engineering, AI & Data Platforms** (Aug 2024 - Present) - **Teseract (formerly Majoritas)** (Dubai, UAE, Remote)
+  - Set technology and AI/ML strategy; led legacy-to-cloud migration of 85% of enterprise clients
+  - Shipped fine-tuned proprietary LLMs and agentic AI workflows to production serving 40M+ queries/month
+  - Built ML-powered fraud detection recovering $260K in revenue; automated settlement workflows unlocking $1.8M annual cash flow
+- **Fractional CTO** (Aug 2025 - Dec 2025, concurrent part-time) - **Stealth FinTech Startup** (Dubai, UAE)
+- **CTO / Head of Platform Engineering & Security** (Aug 2022 - Aug 2024) - **Smart Predictive Technologies** (Dubai, UAE, Remote)
+  - Grew transactions 2x to $12M revenue; built SOC 2/PCI-DSS compliance from scratch
+- **CTO, Engineering Services Provider** (Apr 2021 - Aug 2022) - **QuantumSoft, LLC** (Boston, MA / EMEAR, USA)
+- **Head of Engineering Department** (May 2015 - Apr 2021, progressed through 3 titles) - **Cisco Systems, SON Project** (EMEAR / USA)
 
 ### Technical Skills
-- **Primary:** [YOUR_PRIMARY_SKILLS]
-- **Secondary:** [YOUR_SECONDARY_SKILLS]
-- **Domain:** [YOUR_DOMAIN_EXPERTISE]
-- **Software:** [YOUR_TOOLS_AND_SOFTWARE]
+- **Primary:** AI/ML strategy & delivery (LLMs, agentic AI, MLOps, AI governance), technology executive leadership (CTO), fintech & payments platform architecture, cloud/distributed systems (AWS, GCP, Azure, Kubernetes, Kafka)
+- **Secondary:** Hands-on coding (Python, TypeScript, Go, C#/.NET), data platform architecture (Flink, Snowflake, BigQuery), digital asset custody/blockchain settlement
+- **Domain:** Regulated financial services, cross-border payments, digital assets, regulatory compliance (PCI-DSS, SOC2, GDPR, PSD2, MiCA, Basel III)
+- **Software:** Kafka, Flink, Spark, Kubernetes, Docker, Terraform, Snowflake, BigQuery, vLLM
 
 ### Certifications
-<!-- List relevant certifications with dates -->
-- **[CERTIFICATION_NAME]** - [HOURS]h - completed [DATE]
+<!-- None found in source documents -->
 
 ### Publications
-<!-- List peer-reviewed publications, if any -->
-- [AUTHOR_LIST] ([YEAR]). [TITLE]. [JOURNAL].
+<!-- None found in source documents -->
 
 ### Awards
-<!-- List relevant awards, hackathons, competitions -->
-- [AWARD_NAME] - [EVENT] ([YEAR])
+<!-- None found in source documents -->
 
 ### Behavioral Profile
-<!-- Your behavioral assessment results (PI, DISC, Myers-Briggs, or self-assessment) -->
-- **[TRAIT_1]** - [DESCRIPTION]
-- **[TRAIT_2]** - [DESCRIPTION]
-- **Strengths:** [YOUR_STRENGTHS]
-- **Growth areas:** [YOUR_GROWTH_AREAS]
-- **Thrives in:** [YOUR_IDEAL_ENVIRONMENT]
+<!-- No formal assessment on file. Notes below are inferred from LinkedIn - see .claude/skills/job-application-assistant/02-behavioral-profile.md for details and caveats -->
+- **Hands-on at executive level** - stays close to architecture and code rather than managing purely from a distance
+- **Governance-first innovation** - pairs new capability (AI, cloud, digital assets) with formal governance frameworks
+- **Strengths:** Systems-level/organizational reframing, mentorship-driven team retention (consistently 90%+)
+- **Growth areas:** Not yet assessed
+- **Thrives in:** Ambiguous, early-stage/fractional environments; small pods with fewer handoffs
 
 ### What Excites You
 <!-- What motivates you professionally -->
-- [PASSION_1]
-- [PASSION_2]
+- Taking AI from pilot to production at scale
+- Building and scaling engineering organizations
+- Regulated-industry technical leadership (compliance/governance as part of strategy, not an afterthought)
+- Turnaround / 0-to-1 challenges
 
 ### Target Sectors
 <!-- Industries and companies you're targeting -->
-- [SECTOR_1]: [EXAMPLE_COMPANIES]
-- [SECTOR_2]: [EXAMPLE_COMPANIES]
+- Any industry, with a CTO / Head of AI role focus (not restricted to fintech)
+- Strongest fit: fintech & payments, regulated financial services, digital assets
 
 ### Deal-breakers
 <!-- Hard constraints on job search -->
-- [DEALBREAKER_1]
-- [DEALBREAKER_2]
+- **Work-authorization walls** (a Russian citizen based in Dubai cannot clear these, and relocation does not fix them): explicit "no visa sponsorship" / "must have existing work authorization"; region-locked remote requiring local work-auth (e.g. US/EU-only) with no sponsorship or employer-of-record; citizens-/nationals-only; active security clearance; native/fluent requirement in a language other than English or Russian.
+- Note: "requires relocation" is **not** a deal-breaker (open to relocation with sponsorship); a posting merely silent on sponsorship is a **flag to confirm**, not a rejection.
 
 ## Repo Structure
 - `cv/` - LaTeX CV variants (moderncv template, banking style)

@@ -72,3 +72,6 @@ upskill/*.md
 .agents/**/node_modules/
 .agents/**/*.log
 .agents/usage/
+
+# Playwright MCP scratch (browser snapshots/console logs from browser-assisted sources)
+.playwright-mcp/

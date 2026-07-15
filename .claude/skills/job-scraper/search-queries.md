@@ -1,70 +1,94 @@
 # Search Queries for Job Scraper
 
-<!-- SETUP: Customize these queries based on your skills, target roles, and location -->
+<!-- Populated by /setup on 2026-07-09. Re-run `/setup --section search` to update. -->
 
 ## Search Sites
 
-Primary (Danish job market):
-- **jobindex.dk** - largest Danish job board
-- **linkedin.com/jobs** - LinkedIn job listings (filter: Denmark / your city)
-- **karriere.dk** - IDA's job board (engineering/science roles)
-- **jobfinder.dk** - another major Danish job board
-- **akademikernes.dk** - academic union job board
+Primary (global — no Denmark-specific portal in use; the built-in Jobindex/Jobbank/Jobdanmark/Jobnet tools are not applicable to this search):
+- **linkedin.com/jobs** - LinkedIn job listings, global search, no location filter (`.agents/skills/linkedin-search` CLI)
+- Direct Google searches with `site:` filters for known target companies' career pages
 
-Secondary (company career pages via Google):
-- Direct Google searches with `site:` filters for known target companies
+Remote-focused portal CLIs (zero-dependency `bun run .agents/skills/<name>/cli/src/cli.ts search …`, same JSON contract as LinkedIn — `/scrape` runs them in parallel and dedups by canonical URL):
+- **ai-jobs-search** - ai-jobs.net, **AI/ML/data roles only** — highest-relevance source for AI/data leadership. Keyword filter is client-side; results carry `company: null` (the board doesn't publish it)
+- **freehire-search** - freehire.dev aggregator (~50 ATS platforms), tech-focused, faceted JSON API
+- **remotive-search** - Remotive remote-jobs JSON API. ⚠️ Credit Remotive + link back; keep to ~4 GETs/day (24h delay)
+- **remoteok-search** - RemoteOK JSON API (broad remote aggregator). ⚠️ Credit Remote OK + link back to its job URL or API access is suspended
+- **weworkremotely-search** - We Work Remotely RSS feeds (master + per-category); all remote
+- **hubstafftalent-search** - Hubstaff Talent freelance/remote listings (server-rendered XHR fragment; personal-use only)
+- **crunchboard-search** - CrunchBoard (TechCrunch) RSS, server-side keyword search. Tech/startup + some AI; **small corpus** (declined board)
+- **datajobs-search** - datajobs.com data/analytics board (category pages, client-side filter). Carries genuine **data leadership** (Chief Data Architect, Director/Lead DS) alongside IC; no posting dates
+- **ods-search** - ods.ai (Open Data Science), **CIS/Russian** data-science community (`__NEXT_DATA__` JSON). IC-heavy, often Russian-language, RUB salaries — work-auth-friendly niche
+
+Browser-assisted source (no CLI — driven via the Playwright MCP because Cloudflare blocks plain HTTP; skip if the MCP is not connected):
+- **wellfound-search** - Wellfound (ex-AngelList) startup/tech jobs. Best of the added sources for **startup leadership** (founding eng, Head of Eng, VP Eng, CTO). See its `SKILL.md` for the navigate→extract procedure.
+
+Not integrated (recorded decisions, do not re-add):
+- **Toptal** - a vetted private network; you apply to *join Toptal*, not to individual jobs. No public postings/API/RSS to scrape. (Toptal *client* roles still surface via We Work Remotely.)
+- **WorkWave** - a field-service SaaS vendor, not a job board; only its own careers page. Irrelevant to a CTO/AI search.
+- **FlexJobs** - paid-subscription site (listings paywalled) and blocks automated clients (curl status 000). Not scrapeable.
+- **theaijobboard.com** - defunct: the domain 301-redirects to an unrelated gambling site. Replaced by `ai-jobs-search` (ai-jobs.net) as the AI-focused source.
+- **JS Remotely / javascript.jobs** - live HTML board but JavaScript IC/dev roles; weak fit for a CTO/Head-of-AI search. Any remote leadership roles it carries surface via LinkedIn/Wellfound/RemoteOK.
+- **Outer Join (outerjoin.us)** - search list is scrapeable, but every per-job URL (`/remote-jobs/<slug>`) **404s** under curl/browser/cookie, and cards carry no external apply link — so there is no working job URL to emit/fetch/dedup. Not integrable despite a good-looking listing.
+- **Jobtensor** - JS/AJAX SPA; listings load from an `/ajax/search` endpoint that 400s without the right params (browser-only, heavy). German/EU IC — low fit. Deferred.
+- **Dice** - browser renders listings, but `robots.txt` disallows the `/jobs?q=` search paths (ToS); US-onsite IC.
+- **CrunchBoard/arc.dev/Starbridge browser re-check note** - a subagent wrongly flagged CrunchBoard "Cloudflare-locked" (it works — now built) and wrongly said arc.dev/Starbridge had no listings (they do; both marginal and deferred). Lesson: verify with the real browser + check that job URLs resolve.
+- **Not job boards** (verified via real browser): Underdog.io + White Truffle (candidate-matching, 0 public listings), Starbridge Partners (recruiter — ~7 IC listings, deferred), End-to-End Computing (single-company Zoho ATS), KDnuggets (blog), datayoshi (defunct → redirects away).
+- **Hubstaff Talent / Wellfound freelance-vs-fit note** - these skew IC/freelance; leadership fit is thin except Wellfound. Ranking (not scraping) filters this — no seniority gate at scrape time.
+
+Region-specific portals (e.g. Bayt.com for GCC, or others) are not yet configured. Add one with `/add-portal` if a specific market becomes a priority.
 
 ## Query Categories
 
-Queries are grouped by priority. Each query should be combined with your location terms (e.g. "Copenhagen", "Sjælland", "Hovedstaden") where the site supports it.
+Queries are grouped by priority. This search casts a global net (candidate is open to relocation anywhere) with a soft preference for UAE/GCC and Europe — see Location Filter below.
 
-### Priority 1: [YOUR_PRIMARY_ROLE_TYPE]
+### Priority 1: CTO / Chief Technology Officer
 
-These match your strongest and most desired career direction.
-
-```
-site:jobindex.dk "[YOUR_PRIMARY_JOB_TITLE]" [YOUR_CITY]
-site:jobindex.dk "[YOUR_KEY_SKILL]" [YOUR_CITY]
-site:linkedin.com/jobs "[YOUR_PRIMARY_JOB_TITLE]" [YOUR_COUNTRY]
-```
-
-### Priority 2: [YOUR_DOMAIN_EXPERTISE]
-
-These match your domain expertise.
+Strongest and most desired career direction.
 
 ```
-site:jobindex.dk [YOUR_DOMAIN_KEYWORD_1] [YOUR_CITY] OR [YOUR_REGION]
-site:jobindex.dk [YOUR_DOMAIN_KEYWORD_2] [YOUR_COUNTRY]
-site:linkedin.com/jobs [YOUR_DOMAIN_KEYWORD_1] [YOUR_CITY] [YOUR_COUNTRY]
+site:linkedin.com/jobs "Chief Technology Officer" fintech
+site:linkedin.com/jobs "CTO" "cross-border payments"
+"Chief Technology Officer" fintech OR payments -site:linkedin.com
 ```
 
-### Priority 3: [YOUR_ADJACENT_ROLE_TYPE]
+### Priority 2: Head of AI / AI Strategy
 
-Adjacent roles you could pivot into.
-
-```
-site:jobindex.dk "[YOUR_ADJACENT_TITLE_1]" [YOUR_KEY_SKILL] [YOUR_CITY]
-site:jobindex.dk "[YOUR_ADJACENT_TITLE_2]" [YOUR_KEY_SKILL] [YOUR_CITY]
-```
-
-### Priority 4: Broader Technical / Consulting
-
-Wider net for general technical roles.
+Domain expertise: AI/ML strategy, LLMs, agentic AI, MLOps, AI governance.
 
 ```
-site:jobindex.dk [YOUR_KEY_SKILL] developer [YOUR_CITY]
-site:linkedin.com/jobs "[YOUR_KEY_SKILL] developer" [YOUR_CITY]
-site:jobindex.dk "technical consultant" [YOUR_DOMAIN] [YOUR_CITY]
+site:linkedin.com/jobs "Head of AI" OR "VP of AI"
+site:linkedin.com/jobs "AI strategy" director OR head fintech
+"Head of AI" OR "Chief AI Officer" regulated OR fintech -site:linkedin.com
+```
+
+### Priority 3: VP / Head of Engineering / Engineering Manager
+
+Adjacent roles one level below CTO.
+
+```
+site:linkedin.com/jobs "VP of Engineering" fintech OR payments
+site:linkedin.com/jobs "Head of Engineering" AI OR fintech
+site:linkedin.com/jobs "Engineering Manager" fintech OR AI OR payments
+```
+
+### Priority 4: Fractional/Advisory CTO & Broader Technical Leadership
+
+Wider net, including part-time/advisory engagements.
+
+```
+site:linkedin.com/jobs "Fractional CTO" OR "Advisory CTO"
+site:linkedin.com/jobs "technology executive" fintech OR "digital assets"
+"fractional CTO" fintech OR startup -site:linkedin.com
 ```
 
 ## Location Filter
 
-When evaluating results, verify the job location is within reasonable commute distance from your home. Define acceptable areas:
-- [YOUR_CITY] and surrounding areas
-- [ACCEPTABLE_AREA_1]
-- [ACCEPTABLE_AREA_2]
-- [BORDERLINE_AREA] (borderline - ~X min by transit)
-- [TOO_FAR_AREA] (too far)
+Candidate is a **Russian citizen based in Dubai**, goal **start fast** (see `04-job-evaluation.md`
+dimension 4 for the full work-authorization model — `/rank` applies the veto, not `/scrape`). Do not
+exclude postings on location alone at scrape time; prioritize triage order:
+- **Ideal (start-fast):** Fully-remote (global/EOR), UAE / GCC / MENA (current base — no visa)
+- **Acceptable:** Anywhere that sponsors a work visa / relocation (open to relocating, but slower)
+- **Excluded at rank (work-auth wall, not relocation):** explicit no-sponsorship / must-have-existing-work-auth, region-locked remote needing local work-auth (US/EU-only) with no sponsorship/EOR, citizens-/nationals-only, active security clearance, native/fluent non-English/Russian language requirement
 
 ## Date Filter
 

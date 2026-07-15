@@ -3,7 +3,7 @@ name: scrape
 description: >
   Scrapes Danish job sites for new positions matching your profile. Deduplicates across runs.
   Triggers on: job scrape, find jobs, search jobs, new jobs, job search, scrape jobs, /scrape
-allowed-tools: Read, Write, Edit, Glob, Grep, Bash(bun --version), Bash(bun run .agents/skills/*/cli/src/cli.ts *), WebFetch, WebSearch, Agent, AskUserQuestion
+allowed-tools: Read, Write, Edit, Glob, Grep, Bash(bun --version), Bash(bun run .agents/skills/*/cli/src/cli.ts *), Bash(python3 tools/url_normalize.py *), WebFetch, WebSearch, Agent, AskUserQuestion, mcp__playwright__browser_navigate, mcp__playwright__browser_evaluate, mcp__playwright__browser_wait_for, mcp__playwright__browser_close
 ---
 
 # Job Scraper
@@ -75,12 +75,20 @@ Use `WebSearch` for:
 
 Use the site-specific query strings from `search-queries.md` directly as WebSearch queries for these portals.
 
+#### 1d. Browser-assisted portals (Playwright MCP)
+
+Some portals are behind bot-management (Cloudflare) that blocks plain HTTP, so they have **no `cli/` directory** and instead declare the `mcp__playwright__browser_*` tools in their `SKILL.md` frontmatter (e.g. `wellfound-search`). For each such portal:
+
+1. Read its `SKILL.md` for the navigate → `wait_for` → `evaluate` extraction procedure.
+2. Drive the **Playwright MCP** per that procedure to render the page and extract job cards into the standard `results` JSON contract; add them to the Step 2 pool like any other source.
+3. If the Playwright MCP is **not connected** in this session, skip the portal and note it as unavailable in the Step 5 output — never fabricate its results.
+
 ### Step 2: Fetch & Parse
 
 For each promising result from Step 1:
 - Use `WebFetch` to retrieve the job posting page
 - Extract: **job title**, **company**, **location**, **posting date** (or "recent"), **URL**, **key requirements** (brief), **application deadline** (if listed)
-- Skip if the URL or company+title combo already exists in `seen_jobs.json`
+- Skip if the job already exists in `seen_jobs.json` - match by **canonical URL** (`python3 tools/url_normalize.py <url>`), not raw string, so the same posting scraped from two LinkedIn regional subdomains (`ae.linkedin.com` vs `linkedin.com`) or with different tracking params collapses to one entry. Company+title is a secondary fallback.
 - Skip if the company+role already appears in `job_search_tracker.csv`
 
 ### Step 3: Quick Fit Assessment

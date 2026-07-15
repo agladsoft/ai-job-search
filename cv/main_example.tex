@@ -1,8 +1,7 @@
-%% Example CV - [YOUR_NAME]
+%% Example CV - Anton Chislov
 %% Comprehensive overview of all competencies, experience, and achievements.
 %% Use as a master reference when tailoring role-specific CVs.
 %%
-%% SETUP: Run /setup to populate this with your actual information.
 %% Compile with: lualatex main_example.tex
 %% (pdflatex often fails on modern MiKTeX with fontawesome5 font-expansion errors.)
 
@@ -24,18 +23,18 @@
     linkcolor=blue,
     filecolor=magenta,
     urlcolor=blue,
-    pdftitle={[YOUR_NAME] - CV},
+    pdftitle={Anton Chislov - CV},
     pdfpagemode=FullScreen,
 }
 \usepackage[scale=0.80]{geometry}
 \usepackage{import}
 
 % personal data
-\name{[First]}{[Last]}
-\address{[Your Address, City, Country]}{}{}
-\phone[mobile]{[+XX XXXXXXXXXX]}
-\email{[your.email@example.com]}
-\extrainfo{\href{[https://linkedin.com/in/your-profile]}{LinkedIn}, \href{[https://github.com/your-username]}{GitHub}}
+\name{Anton}{Chislov}
+\address{Dubai, UAE}{}{}
+\phone[mobile]{+971 55 391 0964}
+\email{ant747@gmail.com}
+\extrainfo{\href{https://www.linkedin.com/in/anton-chislov/}{LinkedIn}}
 
 \begin{document}
 
@@ -46,7 +45,7 @@
 % ============================================================
 
 \vspace{6pt}
-\small{[Write a 3-5 line profile statement tailored to the role you're applying for. Focus on what makes you uniquely qualified. Example: "Data scientist with a PhD in [field] and X years of industry experience. Combines deep domain expertise in [domain] with strong applied machine learning and Python development skills. Experienced in developing end-to-end ML pipelines, from data ingestion to stakeholder-facing dashboards."]}
+\small{Technology executive with 10+ years building secure, scalable distributed systems and 5+ years leading AI and fintech engineering organizations across regulated financial services and digital asset infrastructure. Sets technology strategy, architecture roadmap, and engineering standards while owning infrastructure reliability, security, and regulatory compliance. Scaled cross-border payments 2x to \$12M revenue, cut failed payments 42\%, and delivered digital asset custody and blockchain settlement across a platform handling 8.3B monthly API and telemetry events.}
 
 % ============================================================
 %     CORE COMPETENCIES
@@ -56,15 +55,15 @@
 \vspace{1pt}
 \begin{itemize}
 
-\item \textbf{[Skill Category 1]}: [Specific skills, frameworks, tools. Be concrete.]
+\item \textbf{AI/ML Strategy \& Delivery}: LLMs (fine-tuned Mistral 7B, LLaMA-3 on vLLM), agentic AI workflows, MLOps, model deployment, ML-driven fraud detection, AI governance (NIST AI RMF, ISO 42001)
 
-\item \textbf{[Skill Category 2]}: [Specific skills, frameworks, tools.]
+\item \textbf{Fintech \& Payments}: Cross-border payments, digital asset custody, blockchain settlement, FX pricing, payment rails (SWIFT/SEPA/ACH), KYC/AML automation
 
-\item \textbf{[Skill Category 3]}: [Specific skills, frameworks, tools.]
+\item \textbf{Security, Risk \& Compliance}: PCI-DSS, SOC 2, GDPR, PSD2, MiCA, Basel III, MiFID II, regulatory audit readiness
 
-\item \textbf{[Skill Category 4]}: [Domain expertise, methods, approaches.]
+\item \textbf{Secure Distributed Systems \& Cloud}: Event-driven architecture, Kafka, Flink, Spark, AWS, GCP, Azure, Kubernetes, Docker, Terraform, microservices, Snowflake, BigQuery
 
-\item \textbf{[Skill Category 5]}: [Tools, platforms, software.]
+\item \textbf{Technology Leadership}: Technology strategy, architecture roadmap, building \& scaling engineering organizations, mentorship \& retention (90\%+), executive/board communication
 
 \end{itemize}
 
@@ -77,31 +76,48 @@
 \begin{itemize}
 
 % --- Most Recent Role ---
-\item{\cventry{[YYYY--Present]}{[Job Title]}{[Company]}{[City, Country]}{}{\vspace{1pt}
+\item{\cventry{Aug 2024--Present}{CTO / Head of Engineering, AI \& Data Platforms}{Teseract (formerly Majoritas)}{Dubai, UAE (Remote)}{}{\vspace{1pt}
 \begin{itemize}
-    \item [Achievement or responsibility 1 - be specific, use numbers where possible]
-    \item [Achievement or responsibility 2]
-    \item [Achievement or responsibility 3]
-    \item [Achievement or responsibility 4]
+    \item Set technology and AI/ML strategy, architecture roadmap, and engineering standards; cut release lead time 38\% and lifted on-time delivery to 95\%
+    \item Led legacy-to-cloud transformation, migrating 85\% of enterprise clients onto AWS/Azure cloud-native services within 10 months while holding 99.93\% uptime
+    \item Shipped fine-tuned proprietary LLMs (Mistral 7B / LLaMA-3 on vLLM) and agentic AI workflows from pilot to production, serving 40M+ queries/month
+    \item Built ML-powered fraud detection that cut failed payments 42\% and recovered \$260K in revenue
+    \item Automated settlement workflows, cutting processing time from 4 to 2 days and unlocking \$1.8M in annual cash flow
+\end{itemize}}}
+
+\vspace{3pt}
+
+% --- Concurrent Advisory Role ---
+\item{\cventry{Aug 2025--Dec 2025}{Fractional CTO}{Stealth FinTech Startup}{Dubai, UAE (Part-time)}{}{\vspace{1pt}
+\begin{itemize}
+    \item De-risked a fiat and crypto custody launch via vendor strategy, architecture blueprint, and compliance framework, compressing a 12-month build into a 90-day MVP
 \end{itemize}}}
 
 \vspace{3pt}
 
 % --- Previous Role ---
-\item{\cventry{[YYYY--YYYY]}{[Job Title]}{[Company]}{[City, Country]}{}{\vspace{1pt}
+\item{\cventry{Aug 2022--Aug 2024}{CTO / Head of Platform Engineering \& Security}{Smart Predictive Technologies}{Dubai, UAE (Remote)}{}{\vspace{1pt}
 \begin{itemize}
-    \item [Achievement or responsibility 1]
-    \item [Achievement or responsibility 2]
-    \item [Achievement or responsibility 3]
+    \item Grew transactions 1.2M to 2.4M monthly (2x) to reach \$12M revenue by architecting a real-time FX pricing engine with ML-optimized spreads
+    \item Established SOC 2 and PCI-DSS compliance and cybersecurity controls from scratch during rapid growth
+    \item Held 99.87\% uptime and a 45-minute MTTR while cutting incident count 50\% via AI-driven automation
 \end{itemize}}}
 
 \vspace{3pt}
 
 % --- Earlier Role ---
-\item{\cventry{[YYYY--YYYY]}{[Job Title]}{[Company]}{[City, Country]}{}{\vspace{1pt}
+\item{\cventry{Apr 2021--Aug 2022}{CTO - Engineering Services Provider}{QuantumSoft, LLC}{Boston, MA / EMEAR, USA}{}{\vspace{1pt}
 \begin{itemize}
-    \item [Achievement or responsibility 1]
-    \item [Achievement or responsibility 2]
+    \item Launched a white-label B2B SaaS platform to \$5.2M ARR in 16 months across 8 client deployments at 99.5\% uptime
+\end{itemize}}}
+
+\vspace{3pt}
+
+% --- Earlier Role ---
+\item{\cventry{May 2015--Apr 2021}{Head of Engineering Department (progressed from Development Team Lead)}{Cisco Systems, Self-Optimizing Network (SON) Project}{EMEAR / USA}{}{\vspace{1pt}
+\begin{itemize}
+    \item Progressed from Senior Engineer to Head of Engineering over six years, growing the telecom organization from 12 to 35 engineers
+    \item Led a new vertical as acting CTO, delivering secure distributed systems that handled 2.5x traffic growth at 99.95\% uptime through a microservices migration
 \end{itemize}}}
 
 \end{itemize}
@@ -114,15 +130,7 @@
 \vspace{1pt}
 \begin{itemize}
 
-\item{\cventry{[YYYY--YYYY]}{[Degree] in [Field]}{[Institution]}{[City, Country]}{}{\vspace{1pt}
-Thesis: ``[Thesis Title].'' [Brief description of research focus.]
-}}
-
-\vspace{3pt}
-
-\item{\cventry{[YYYY--YYYY]}{[Degree] in [Field]}{[Institution]}{[City, Country]}{}{\vspace{1pt}
-[Brief description or key topics.]
-}}
+\item{\cventry{--Dec 2006}{Master's Degree, Computer Science}{North Caucasus State Technical University}{}{}{}}
 
 \end{itemize}
 
@@ -133,27 +141,7 @@ Thesis: ``[Thesis Title].'' [Brief description of research focus.]
 \section{Languages}
 \vspace{1pt}
 \begin{itemize}
-\item [Language 1] (native), [Language 2] (fluent), [Language 3] (intermediate).
-\end{itemize}
-
-% ============================================================
-%     PUBLICATIONS (optional)
-% ============================================================
-
-\section{Publications}
-\vspace{1pt}
-\begin{itemize}
-\item [Author(s)] ([Year]). [Title]. [Journal/Conference]. \href{[DOI_URL]}{DOI link}
-\end{itemize}
-
-% ============================================================
-%     HONORS AND AWARDS (optional)
-% ============================================================
-
-\section{Honors and Awards}
-\vspace{1pt}
-\begin{itemize}
-\item{\textbf{[Award Name]} -- [Event/Organization] ([Year]).}
+\item Russian (native), English (fluent).
 \end{itemize}
 
 % ============================================================

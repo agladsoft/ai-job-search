@@ -1,0 +1,20 @@
+{
+  "name": "ods-cli",
+  "version": "1.0.0",
+  "description": "CLI for searching ods.ai (Open Data Science) data-science/ML jobs via its __NEXT_DATA__ JSON — no authentication, zero runtime dependencies. Base URL is swappable via ODS_BASE_URL.",
+  "type": "module",
+  "main": "src/cli.ts",
+  "bin": {
+    "ods-search": "src/cli.ts"
+  },
+  "scripts": {
+    "start": "bun run src/cli.ts",
+    "test": "bun test --timeout 30000",
+    "typecheck": "tsc --noEmit"
+  },
+  "dependencies": {},
+  "devDependencies": {
+    "typescript": "^5.4.0",
+    "@types/bun": "latest"
+  }
+}

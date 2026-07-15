@@ -4,7 +4,7 @@
 <!-- You can use results from PI, DISC, Myers-Briggs, StrengthsFinder, or a self-assessment -->
 
 ## Overview
-[YOUR_NAME]'s behavioral assessment identifies them as a **[PROFILE_TYPE]** pattern. [1-2 SENTENCE_SUMMARY].
+Anton Chislov has no formal behavioral assessment (PI/DISC/MBTI/StrengthsFinder) on file yet — run `/setup --section behavioral` to add one. The notes below are *[Inferred from LinkedIn About section and posts - review before relying on this]*: a hands-on, governance-minded technology executive who pairs aggressive AI/cloud adoption with structured accountability frameworks.
 
 ## Core Behavioral Drives
 
@@ -16,14 +16,14 @@
 | [DRIVE_4] | [LEVEL] | [DESCRIPTION] |
 
 ## Strongest Behaviors
-- **[BEHAVIOR_1]:** [DESCRIPTION]
-- **[BEHAVIOR_2]:** [DESCRIPTION]
-- **[BEHAVIOR_3]:** [DESCRIPTION]
+- **Hands-on at executive level:** *[Inferred from LinkedIn About]* stays close to architecture and code rather than managing purely from a distance
+- **Governance-first innovation:** *[Inferred from LinkedIn About + CV bullets]* consistently pairs new capability (AI adoption, cloud migration, digital asset custody) with formal governance (NIST AI RMF, ISO 42001, model risk registers, SOC2/PCI-DSS) rather than shipping ungoverned
+- **Systems-level reframing:** *[Inferred from LinkedIn posts]* habitually reframes tactical problems in organizational/structural terms (e.g. McKinsey 7-S framework applied to AI adoption, "harness vs. platform" distinction for agentic systems)
 
 ## How You Work Best
-- [ENVIRONMENT_PREFERENCE_1]
-- [ENVIRONMENT_PREFERENCE_2]
-- [ENVIRONMENT_PREFERENCE_3]
+- *[Inferred from LinkedIn posts]* Pragmatic, iterative AI adoption — favors small pods (3-5 people) with fewer handoffs over large traditional squads
+- *[Inferred from LinkedIn posts]* Comfortable operating in ambiguity and early-stage/fractional environments without waiting for complete answers
+- *[Inferred from CV + LinkedIn]* Credits team retention (consistently 90%+) to deliberate investment in mentorship and career-pathing, suggesting a preference for people-development-heavy management environments
 
 ## Growth Areas (frame positively in applications)
 - **[AREA_1]:** [HOW_TO_FRAME_IT_POSITIVELY]
@@ -32,15 +32,14 @@
 ## Mapping to Job Posting Language
 
 When a job posting mentions these keywords, it's a **strong behavioral fit**:
-- [KEYWORD_OR_PHRASE_THAT_MATCHES_YOUR_STYLE]
-- [ANOTHER_KEYWORD]
+- *[Inferred]* "AI governance", "regulated fintech", "cross-border payments", "engineering standards", "build vs. buy", "legacy-to-cloud transformation", "hands-on technical leadership"
 
 When a job posting mentions these, flag as **potential friction** (not deal-breaker):
 - [KEYWORD_OR_PHRASE_THAT_MIGHT_CLASH]
 - [ANOTHER_KEYWORD]
 
 ## Management Style Preferences
-- [WHAT_MANAGEMENT_STYLE_WORKS_FOR_YOU]
+- *[Inferred from CV bullets]* Mentorship- and career-pathing-driven management, paired with clear engineering standards
 - [WHAT_DOESN'T_WORK]
 
 ## Using This in Applications

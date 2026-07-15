@@ -35,6 +35,59 @@ Keep answers to 1-2 minutes. Be specific. End with what you learned or would do 
 
 <!-- Add more STAR examples as needed. Aim for 4-6 covering different competencies. -->
 
+## STAR Candidates (Complete Manually)
+<!-- Extracted from CV/LinkedIn achievements by /setup. Not yet full STAR examples - fill in S/T/A/R details before using in an interview. -->
+
+### ML-driven fraud detection recovering $260K
+**Source:** CV (Teseract/Majoritas, Apr/Aug 2024-Present) + LinkedIn About
+**What happened:** Built ML-powered fraud detection that cut failed payments 42% and recovered $260K in revenue on a platform processing 8.3B monthly events.
+**Why it matters:** "Tell me about a time you used data/ML to solve a business problem", "Describe a measurable impact you delivered"
+**S/T/A/R stub:**
+- Situation:
+- Task:
+- Action:
+- Result:
+
+### Legacy-to-cloud migration unlocking $1.8M annual cash flow
+**Source:** CV (Teseract, B2B SaaS variant)
+**What happened:** Led migration of 85% of enterprise clients off legacy on-prem infrastructure onto AWS/Azure cloud-native services within 10 months, automating settlement workflows and cutting processing time from 4 to 2 days.
+**Why it matters:** "Describe a large technical migration you led", "How do you balance speed with operational stability during a major change"
+**S/T/A/R stub:**
+- Situation:
+- Task:
+- Action:
+- Result:
+
+### Building SOC2/PCI-DSS compliance from scratch during hypergrowth
+**Source:** CV (Smart Predictive Technologies, Aug 2022-Aug 2024)
+**What happened:** Established SOC 2 and PCI-DSS compliance and cybersecurity controls from scratch while transaction volume doubled, clearing audits and earning enterprise customer trust.
+**Why it matters:** "Tell me about building a process/function that didn't exist before", "How do you manage compliance/risk under growth pressure"
+**S/T/A/R stub:**
+- Situation:
+- Task:
+- Action:
+- Result:
+
+### Turning around a high-attrition engineering org to 90%+ retention
+**Source:** CV (Teseract) + LinkedIn About
+**What happened:** Rebuilt an inherited, high-attrition engineering organization in 9 months, lifting retention above 90% through structured mentorship and career-pathing during rapid transaction-volume growth.
+**Why it matters:** "Tell me about turning around an underperforming team", "How do you approach retention/mentorship"
+**S/T/A/R stub:**
+- Situation:
+- Task:
+- Action:
+- Result:
+
+### Build-versus-buy decision avoiding $1.5M in infrastructure spend
+**Source:** CV (Teseract) + LinkedIn About
+**What happened:** Chose cloud-native over a custom build for the core platform, cutting time-to-launch by 6 months and avoiding roughly $1.5M in projected infrastructure spend.
+**Why it matters:** "Walk me through a significant build-vs-buy or architecture decision", "How do you evaluate technical trade-offs against cost"
+**S/T/A/R stub:**
+- Situation:
+- Task:
+- Action:
+- Result:
+
 ## Common Tough Questions
 
 ### "Why did you leave [previous company]?"
