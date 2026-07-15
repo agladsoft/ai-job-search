@@ -1,0 +1,20 @@
+{
+  "name": "hubstafftalent-cli",
+  "version": "1.0.0",
+  "description": "CLI for searching Hubstaff Talent's public job listings — no authentication, zero runtime dependencies. Base URL is swappable via HUBSTAFF_BASE_URL.",
+  "type": "module",
+  "main": "src/cli.ts",
+  "bin": {
+    "hubstafftalent-search": "src/cli.ts"
+  },
+  "scripts": {
+    "start": "bun run src/cli.ts",
+    "test": "bun test --timeout 30000",
+    "typecheck": "tsc --noEmit"
+  },
+  "dependencies": {},
+  "devDependencies": {
+    "typescript": "^5.4.0",
+    "@types/bun": "latest"
+  }
+}
