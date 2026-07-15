@@ -15,6 +15,9 @@ Remote-focused portal CLIs (zero-dependency `bun run .agents/skills/<name>/cli/s
 - **remoteok-search** - RemoteOK JSON API (broad remote aggregator). ⚠️ Credit Remote OK + link back to its job URL or API access is suspended
 - **weworkremotely-search** - We Work Remotely RSS feeds (master + per-category); all remote
 - **hubstafftalent-search** - Hubstaff Talent freelance/remote listings (server-rendered XHR fragment; personal-use only)
+- **crunchboard-search** - CrunchBoard (TechCrunch) RSS, server-side keyword search. Tech/startup + some AI; **small corpus** (declined board)
+- **datajobs-search** - datajobs.com data/analytics board (category pages, client-side filter). Carries genuine **data leadership** (Chief Data Architect, Director/Lead DS) alongside IC; no posting dates
+- **ods-search** - ods.ai (Open Data Science), **CIS/Russian** data-science community (`__NEXT_DATA__` JSON). IC-heavy, often Russian-language, RUB salaries — work-auth-friendly niche
 
 Browser-assisted source (no CLI — driven via the Playwright MCP because Cloudflare blocks plain HTTP; skip if the MCP is not connected):
 - **wellfound-search** - Wellfound (ex-AngelList) startup/tech jobs. Best of the added sources for **startup leadership** (founding eng, Head of Eng, VP Eng, CTO). See its `SKILL.md` for the navigate→extract procedure.
@@ -25,6 +28,11 @@ Not integrated (recorded decisions, do not re-add):
 - **FlexJobs** - paid-subscription site (listings paywalled) and blocks automated clients (curl status 000). Not scrapeable.
 - **theaijobboard.com** - defunct: the domain 301-redirects to an unrelated gambling site. Replaced by `ai-jobs-search` (ai-jobs.net) as the AI-focused source.
 - **JS Remotely / javascript.jobs** - live HTML board but JavaScript IC/dev roles; weak fit for a CTO/Head-of-AI search. Any remote leadership roles it carries surface via LinkedIn/Wellfound/RemoteOK.
+- **Outer Join (outerjoin.us)** - search list is scrapeable, but every per-job URL (`/remote-jobs/<slug>`) **404s** under curl/browser/cookie, and cards carry no external apply link — so there is no working job URL to emit/fetch/dedup. Not integrable despite a good-looking listing.
+- **Jobtensor** - JS/AJAX SPA; listings load from an `/ajax/search` endpoint that 400s without the right params (browser-only, heavy). German/EU IC — low fit. Deferred.
+- **Dice** - browser renders listings, but `robots.txt` disallows the `/jobs?q=` search paths (ToS); US-onsite IC.
+- **CrunchBoard/arc.dev/Starbridge browser re-check note** - a subagent wrongly flagged CrunchBoard "Cloudflare-locked" (it works — now built) and wrongly said arc.dev/Starbridge had no listings (they do; both marginal and deferred). Lesson: verify with the real browser + check that job URLs resolve.
+- **Not job boards** (verified via real browser): Underdog.io + White Truffle (candidate-matching, 0 public listings), Starbridge Partners (recruiter — ~7 IC listings, deferred), End-to-End Computing (single-company Zoho ATS), KDnuggets (blog), datayoshi (defunct → redirects away).
 - **Hubstaff Talent / Wellfound freelance-vs-fit note** - these skew IC/freelance; leadership fit is thin except Wellfound. Ranking (not scraping) filters this — no seniority gate at scrape time.
 
 Region-specific portals (e.g. Bayt.com for GCC, or others) are not yet configured. Add one with `/add-portal` if a specific market becomes a priority.
