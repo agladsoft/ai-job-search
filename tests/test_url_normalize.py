@@ -28,6 +28,42 @@ def test_different_linkedin_ids_differ():
     )
 
 
+def test_wellfound_slug_and_query_variants_match():
+    assert same_job(
+        "https://wellfound.com/jobs/4470052-software-engineer",
+        "https://wellfound.com/jobs/4470052-senior-software-engineer?utm=x",
+    )
+
+
+def test_different_wellfound_ids_differ():
+    assert not same_job(
+        "https://wellfound.com/jobs/4470052-software-engineer",
+        "https://wellfound.com/jobs/4470053-software-engineer",
+    )
+
+
+def test_remoteok_slug_variants_match_and_lowercase_host():
+    assert same_job(
+        "https://remoteOK.com/remote-jobs/remote-underwriter-coralisle-1134826",
+        "https://remoteok.com/remote-jobs/underwriter-1134826",
+    )
+    assert not same_job(
+        "https://remoteok.com/remote-jobs/remote-underwriter-1134826",
+        "https://remoteok.com/remote-jobs/remote-underwriter-1134827",
+    )
+
+
+def test_aijobs_slug_and_trailing_slash_variants_match():
+    assert same_job(
+        "https://ai-jobs.net/job/principal-knowledge-data-architect-219682/",
+        "https://ai-jobs.net/job/principal-data-architect-219682",
+    )
+    assert not same_job(
+        "https://ai-jobs.net/job/ml-engineer-200475/",
+        "https://ai-jobs.net/job/ml-engineer-200476/",
+    )
+
+
 def test_non_linkedin_query_preserved():
     assert same_job(
         "https://www.trolley.com/careers/?gh_jid=5286996008",
