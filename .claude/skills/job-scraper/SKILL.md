@@ -3,7 +3,7 @@ name: scrape
 description: >
   Scrapes Danish job sites for new positions matching your profile. Deduplicates across runs.
   Triggers on: job scrape, find jobs, search jobs, new jobs, job search, scrape jobs, /scrape
-allowed-tools: Read, Write, Edit, Glob, Grep, Bash(bun --version), Bash(bun run .agents/skills/*/cli/src/cli.ts *), WebFetch, WebSearch, Agent, AskUserQuestion
+allowed-tools: Read, Write, Edit, Glob, Grep, Bash(bun --version), Bash(bun run .agents/skills/*/cli/src/cli.ts *), Bash(python3 tools/url_normalize.py *), WebFetch, WebSearch, Agent, AskUserQuestion, mcp__playwright__browser_navigate, mcp__playwright__browser_evaluate, mcp__playwright__browser_wait_for, mcp__playwright__browser_close
 ---
 
 # Job Scraper
@@ -74,6 +74,14 @@ Use `WebSearch` for:
 - When bun is unavailable (Step 1a failed)
 
 Use the site-specific query strings from `search-queries.md` directly as WebSearch queries for these portals.
+
+#### 1d. Browser-assisted portals (Playwright MCP)
+
+Some portals are behind bot-management (Cloudflare) that blocks plain HTTP, so they have **no `cli/` directory** and instead declare the `mcp__playwright__browser_*` tools in their `SKILL.md` frontmatter (e.g. `wellfound-search`). For each such portal:
+
+1. Read its `SKILL.md` for the navigate → `wait_for` → `evaluate` extraction procedure.
+2. Drive the **Playwright MCP** per that procedure to render the page and extract job cards into the standard `results` JSON contract; add them to the Step 2 pool like any other source.
+3. If the Playwright MCP is **not connected** in this session, skip the portal and note it as unavailable in the Step 5 output — never fabricate its results.
 
 ### Step 2: Fetch & Parse
 
