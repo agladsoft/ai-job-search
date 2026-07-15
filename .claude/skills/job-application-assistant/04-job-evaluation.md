@@ -16,8 +16,8 @@ How well do the required/preferred skills align with the candidate's capabilitie
 | 40-59 | Partial match, significant upskilling needed |
 | 0-39 | Fundamental mismatch |
 
-**Strong match areas:** [YOUR_PRIMARY_SKILLS]
-**Moderate match areas:** [YOUR_SECONDARY_SKILLS]
+**Strong match areas:** Technology/engineering executive leadership (CTO), AI/ML strategy & delivery (LLMs, agentic AI, MLOps, model governance), fintech & payments platform architecture, regulatory compliance (PCI-DSS, SOC2, GDPR, PSD2, MiCA), cloud/distributed systems (AWS, GCP, Azure, Kubernetes, Kafka), building & scaling engineering organizations
+**Moderate match areas:** Hands-on coding across modern stack (Python, TypeScript, Go, C#/.NET), data platform architecture (Flink, Snowflake, BigQuery), digital asset custody/blockchain settlement, board/executive stakeholder communication
 **Weak match areas:** [SKILLS_YOU_LACK]
 
 ### 2. Experience Match (0-100)
@@ -30,8 +30,8 @@ Does work history align with what they're looking for?
 | 40-59 | Adjacent experience, would need to make the case |
 | 0-39 | Unrelated experience |
 
-**Strong:** [YOUR_DIRECT_EXPERIENCE_DOMAINS]
-**Moderate:** [YOUR_ADJACENT_EXPERIENCE]
+**Strong:** Fintech and payments technology leadership (CTO/Head of Engineering roles), regulated financial services, AI/ML strategy at executive level, telecom infrastructure at scale (Cisco)
+**Moderate:** B2B SaaS platform engineering, engineering-services/outstaffing delivery, digital asset/crypto infrastructure
 **Entry-level:** [ROLES_WITH_LIMITED_EXPERIENCE]
 
 ### 3. Behavioral/Culture Fit (0-100)
@@ -46,11 +46,30 @@ Does the role and company culture match the behavioral profile?
 
 **Red flags to research:** Department disorganization, work dominated by maintenance over development, poor chemistry with leadership, culture mismatches. Check reviews, media coverage, LinkedIn connections, and network contacts for insider perspective.
 
-### 4. Location & Logistics (Pass/Fail + Notes)
-- Within commute range: PASS
-- Remote with occasional office: PASS
-- Requires relocation: FAIL (deal-breaker)
-- Frequent international travel: FLAG (discuss with user)
+### 4. Location & Work Authorization (Pass / Flag / Fail + Notes)
+
+The candidate is a **Russian citizen based in Dubai, UAE**, whose current priority is to **start
+fast**. Location is a veto gate, but a FAIL is a **work-authorization wall — never merely "requires
+relocation"** (the candidate is open to relocating anywhere *with sponsorship*). Classify into four
+tiers:
+
+- **PASS + start-fast boost** — Fully-remote **global** (or remote via employer-of-record /
+  contractor), or **UAE / Dubai / MENA**-based (already resident, no relocation). Fastest to start,
+  no visa needed. Give the Career-Alignment start-fast boost (see dimension 5).
+- **PASS (relocation, viable)** — Onsite/hybrid that **offers or plausibly supports visa
+  sponsorship / relocation**. Kept, but **no** start-fast boost, so it ranks below remote (slower
+  start via visa/move).
+- **FLAG (confirm sponsorship)** — Onsite/hybrid, **or region-locked remote, that is silent on
+  sponsorship**. Keep it in the ranking with a "confirm visa sponsorship" note — silence is **not**
+  a dealbreaker.
+- **FAIL (blocked for a Russian citizen)** — a hard wall that willingness-to-relocate cannot fix:
+  explicit **"no visa sponsorship" / "must have existing work authorization"**; **region-locked
+  remote** requiring local work-auth (e.g. "Remote — US only", "remote in Poland") with no
+  sponsorship/EOR; **citizens- or nationals-only**; **active security clearance**; **native/fluent
+  requirement in a language other than English or Russian** (Mandarin, German, French, Polish,
+  Japanese, Korean, etc.).
+
+Frequent international travel is a **FLAG** (discuss), not a FAIL.
 
 ### 5. Career Alignment & Motivation (0-100)
 Does this role advance career goals and contain tasks that energize?
@@ -65,20 +84,30 @@ Does this role advance career goals and contain tasks that energize?
 **Active job-search mode (temporary strategy):** Currently prioritizing speed-of-hire over strict career-ladder progression. Engineering Manager / Senior Engineering Manager / Head of Engineering-tier roles that are a genuine skills and domain match score in the 60-79 "partially aligned" band or higher on this dimension - they are a lateral step while job-hunting, not a "backwards step," even though they sit one level below CTO. Only score below 60 here if the role is also a poor skills/domain match on its own terms.
 
 **Career goals:**
-- [YOUR_CAREER_GOAL_1]
-- [YOUR_CAREER_GOAL_2]
-- [YOUR_CAREER_GOAL_3]
+- Take AI from pilot to production at scale as a core part of the mandate, not a side initiative
+- Build and scale engineering organizations (team-building, mentorship, org design)
+- Hold technical leadership in regulated industries where governance/compliance is part of the strategy, not an afterthought
 
 **Motivation filter:** Evaluate not just whether you *can* do the tasks, but whether the tasks will *energize* you. Consider:
-- Tasks that energize: [YOUR_ENERGIZING_TASKS]
+- Tasks that energize: shipping AI/ML from pilot to production, building or turning around engineering teams, 0-to-1 and turnaround challenges (including fractional/startup work), navigating regulatory/compliance strategy alongside technology
 - Tasks that drain: [YOUR_DRAINING_TASKS]
 - Non-task factors: leadership style, department culture, company values, degree of autonomy
+- No hard deal-breakers currently recorded
 
 **Life situation alignment:** Consider personal constraints:
-- **Security**: [YOUR_FINANCIAL_SITUATION_CONTEXT]
-- **Flexibility**: [YOUR_SCHEDULE_CONSTRAINTS]
+- **Citizenship / work authorization**: Russian citizen based in Dubai, UAE. Needs a sponsored work
+  visa for most countries, so roles that cannot sponsor are hard FAILs (see dimension 4). Fully-remote
+  (global/EOR) and UAE/MENA roles need no visa and start fastest.
+- **Flexibility**: Open to first-time relocation to *any* location, but **only where a work visa is
+  sponsored**; fully-remote or UAE/MENA strongly preferred.
 - **Professional development**: [YOUR_GROWTH_PRIORITIES]
-- **Active job-search mode (temporary strategy)**: UAE-based, MENA-based, or fully-remote roles get a boost on this dimension - treat them as at least "partially aligned" (60-79) on location/logistics fit alone, even if career-ladder alignment on its own would score lower, because faster time-to-hire is the current priority. Stacks with the EM-tier caveat above - a genuinely-matched EM role that is also UAE/MENA/remote should land in the upper half of 60-79 or into 80-100.
+- **Start-fast boost (temporary strategy)**: The current priority is **speed-to-start**, so
+  **fully-remote (global) and UAE/MENA roles get a boost** on Career Alignment - treat them as at
+  least "partially aligned" (60-79) on location fit alone, even if career-ladder alignment on its own
+  would score lower. This boost is for remote/UAE-MENA **only**; a role that requires relocation
+  (even with sponsorship) does **not** get it, because the visa/move makes it slower to start. Stacks
+  with the EM-tier caveat above - a genuinely-matched EM role that is also remote/UAE/MENA should land
+  in the upper half of 60-79 or into 80-100.
 
 ### 6. Salary Benchmark (Optional)
 
@@ -114,7 +143,7 @@ Present the evaluation as:
 | Technical Skills | XX/100 | [brief note] |
 | Experience Match | XX/100 | [brief note] |
 | Behavioral Fit | XX/100 | [brief note] |
-| Location | PASS/FAIL | [brief note] |
+| Location & Work Auth | PASS/FLAG/FAIL | [remote-fast / relocation-w-sponsorship / confirm-sponsorship / work-auth wall] |
 | Career Alignment | XX/100 | [brief note] |
 
 **Overall Score: XX/100** (weighted average of scored dimensions)
@@ -144,7 +173,7 @@ Present the evaluation as:
 - Behavioral Fit: 15%
 - Career Alignment: 30%
 
-(Location is pass/fail, not weighted)
+(Location & Work Authorization is a veto gate — PASS/FLAG keep the role, FAIL excludes — not a weighted dimension. The remote/UAE-MENA start-fast boost is applied inside Career Alignment.)
 
 ## Thresholds
 - **Strong Fit** (75+): Definitely apply, tailor everything

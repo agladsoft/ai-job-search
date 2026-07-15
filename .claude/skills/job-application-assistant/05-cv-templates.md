@@ -39,18 +39,18 @@ Expected output: `Output written on main_<company>.pdf (2 pages, ...)`. Any page
     linkcolor=blue,
     filecolor=magenta,
     urlcolor=blue,
-    pdftitle={[YOUR_NAME] - CV},
+    pdftitle={Anton Chislov - CV},
     pdfpagemode=FullScreen,
 }
 \usepackage[scale=0.77]{geometry}
 \usepackage{import}
 
 % Personal data
-\name{[FIRST_NAME]}{[LAST_NAME]}
-\address{[YOUR_ADDRESS]}{}{}
-\phone[mobile]{[YOUR_PHONE]}
-\email{[YOUR_EMAIL]}
-\extrainfo{\href{[YOUR_LINKEDIN_URL]}{LinkedIn}, \href{[YOUR_GITHUB_URL]}{GitHub}}
+\name{Anton}{Chislov}
+\address{Dubai, UAE}{}{}
+\phone[mobile]{+971 55 391 0964}
+\email{ant747@gmail.com}
+\extrainfo{\href{https://www.linkedin.com/in/anton-chislov/}{LinkedIn}, \href{[YOUR_GITHUB_URL]}{GitHub}}
 
 \begin{document}
 \makecvtitle
@@ -105,12 +105,14 @@ Write 5-7 lines that function as an "elevator pitch": a concise, compelling intr
 
 **Create 2-3 profile statement templates for your main role types:**
 
-<!-- SETUP: These are populated based on your background -->
-**For [YOUR_PRIMARY_ROLE_TYPE] roles:**
-> [YOUR_PROFILE_STATEMENT_TEMPLATE_1]
+**For General CTO / Technology Executive roles:** *[Used for: general CTO applications]*
+> Technology executive with 10+ years building secure, scalable distributed systems and 5+ years leading AI and fintech engineering organizations across regulated financial services and digital asset infrastructure. Sets technology strategy, architecture roadmap, and engineering standards while owning infrastructure reliability, security, and regulatory compliance. Scaled cross-border payments 2x to $12M revenue, cut failed payments 42%, and delivered digital asset custody and blockchain settlement across a platform handling 8.3B monthly API and telemetry events. Partners with Product, Compliance, Risk, and Operations to make technology a competitive advantage.
 
-**For [YOUR_SECONDARY_ROLE_TYPE] roles:**
-> [YOUR_PROFILE_STATEMENT_TEMPLATE_2]
+**For B2B SaaS / Legacy-to-Cloud Transformation CTO roles:** *[Used for: SaaS platform modernization applications]*
+> Engineering executive with 10+ years modernizing B2B SaaS platforms through legacy-to-cloud transformation, plus 5+ years scaling fintech and AI-driven engineering organizations across Engineering, QA, and Architecture with 90%+ retention. Led migration of a B2B SaaS payment platform off legacy infrastructure onto cloud-native AWS/Azure architecture, unlocking $1.8M in annual cash flow. Shipped commercial AI and LLM-based fraud detection into production, recovering $260K in revenue with zero audit findings.
+
+**For Head of AI / AI Strategy roles:** *[Used for: AI-leadership-focused applications]*
+> AI/ML strategy executive with 10+ years building data-intensive platforms and 5+ years leading AI teams, taking GenAI and ML from pilot to production at enterprise scale. Set AI strategy and delivery across data science, LLM infrastructure, and MLOps, shipping agentic AI and fine-tuned proprietary LLMs (Mistral/LLaMA on vLLM) serving 40M+ queries per month. Established AI governance aligned to NIST AI RMF and ISO 42001. Delivered 3.2x AI value realisation on a $600K program.
 
 ### Core Competencies / Skills Section (Best Practice)
 Reorder and emphasize based on the role. Use bold category labels.

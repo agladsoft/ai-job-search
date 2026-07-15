@@ -75,11 +75,12 @@ site:linkedin.com/jobs "technology executive" fintech OR "digital assets"
 
 ## Location Filter
 
-Candidate is open to relocation anywhere — do not exclude postings on location alone. Use these tiers only to prioritize triage order, not to filter out results:
-- **Ideal:** UAE / GCC (current base), Europe (prior EMEAR experience)
-- **Acceptable:** USA (prior work history there), fully remote roles
-- **Borderline:** Any other region — still evaluate on merit
-- **Too far:** None — no location is excluded
+Candidate is a **Russian citizen based in Dubai**, goal **start fast** (see `04-job-evaluation.md`
+dimension 4 for the full work-authorization model — `/rank` applies the veto, not `/scrape`). Do not
+exclude postings on location alone at scrape time; prioritize triage order:
+- **Ideal (start-fast):** Fully-remote (global/EOR), UAE / GCC / MENA (current base — no visa)
+- **Acceptable:** Anywhere that sponsors a work visa / relocation (open to relocating, but slower)
+- **Excluded at rank (work-auth wall, not relocation):** explicit no-sponsorship / must-have-existing-work-auth, region-locked remote needing local work-auth (US/EU-only) with no sponsorship/EOR, citizens-/nationals-only, active security clearance, native/fluent non-English/Russian language requirement
 
 ## Date Filter
 
