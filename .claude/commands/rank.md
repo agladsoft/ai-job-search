@@ -45,6 +45,13 @@ Dispatch parallel `general-purpose` agents via the **Agent tool**, ~5 jobs per a
 - Agents fetch each posting URL with WebFetch and score **only from actually fetched content**. If a URL is dead, redirects to a listing page, or the posting has expired, the agent marks that job `expired` - it never scores from the title alone and never fabricates posting content.
 - Scope is triage: posting text vs. rubric. **No company research, no salary lookup, no web searches** - that depth belongs to `/apply`.
 
+**Browser-assisted sources (e.g. Wellfound).** Some sources sit behind bot-management (Cloudflare) that returns **403 to WebFetch** - any source whose `.agents/skills/*/SKILL.md` declares the `mcp__playwright__browser_*` tools instead of a `cli/` (currently `wellfound-search`, host `wellfound.com`). Do **not** route these URLs to the WebFetch scoring agents: they will 403 and be wrongly marked `expired`. Handle them in the **main context** instead:
+
+1. For each such posting, fetch the detail via the Playwright MCP - `browser_navigate` to the job URL, `browser_wait_for` text "Apply", then `browser_evaluate` returning `main.innerText` (see the browser source's `SKILL.md` "Detail procedure"). Score that rendered text against the same rubric inline (or hand the text to a scoring agent), producing the same JSON object. Close the browser (`browser_close`) when done.
+2. **If the Playwright MCP is not connected this session**, do not mark the job `expired`. Score it from the metadata already stored in `seen_jobs.json` (title, company, location, tags, salary), set the `notes` to flag "metadata-only (browser unavailable)", and treat the score as lower-confidence - `/apply` re-fetches in depth anyway.
+
+Partition candidates up front: browser-assisted URLs go through this main-context path, everything else goes to the WebFetch agents as above.
+
 Each agent returns a JSON array, one object per job:
 
 ```json
@@ -171,7 +178,7 @@ Rules for the presentation:
 
 ## Important Rules
 
-1. **Never rank unfetched postings.** A job whose posting cannot be retrieved is marked expired, not guessed at.
+1. **Never rank unfetched postings.** A job whose posting cannot be retrieved is marked expired, not guessed at. Exception: a **browser-assisted source** (Step 2) that WebFetch cannot reach is not "unfetchable" - fetch it via the Playwright MCP, or (only if the MCP is unavailable) score it from its stored `seen_jobs.json` metadata and flag it as such. A genuinely dead browser-source URL (the browser also returns 404/gone) is still marked expired.
 2. **Triage depth only.** No company research, no salary lookups, no reviewer agents - `/rank` exists to be cheap enough to run on every scrape batch.
 3. **Deal-breakers veto scores.** A 90-point job that fails a location deal-breaker is excluded, not ranked first.
 4. **Honest scoring.** Gaps are reported per job; a low-scoring posting is presented as such. The score bands and weights come from `04-job-evaluation.md` - if the user disagrees with a ranking, the fix is updating their profile or the framework, not bending scores.
